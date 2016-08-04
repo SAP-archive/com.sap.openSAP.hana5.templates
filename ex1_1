@@ -1,0 +1,17 @@
+_schema-version: '2.0'
+ID: openSAPHANA5
+description: openSAP HANA5 Group 01
+version: 0.0.1
+
+modules:
+- name: web
+  type: html5
+  path: web
+  requires:
+      - name: openSAPHANA5_<group ##>-uaa
+      
+resources:
+  - name: openSAPHANA5_<group ##>-uaa
+    type: com.sap.xs.uaa
+    parameters:
+      config_path: ./xs-security.json  
