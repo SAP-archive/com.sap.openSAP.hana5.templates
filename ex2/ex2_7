@@ -17,18 +17,6 @@
             {
                 "privileges":[ "PO_VIEW_PRIVILEGE" ]
             }
-        ],
-		"object_privileges":[
-			{
-				"name": "PO.Header",
-				"type": "TABLE",
-				"privileges": [ "SELECT" ]
-			},
-			{
-				"name": "PO.Item",
-				"type": "TABLE",
-				"privileges": [ "SELECT" ]
-			}
-		]
+        ]
 	}
 }
