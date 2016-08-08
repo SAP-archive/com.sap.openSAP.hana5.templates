@@ -1,0 +1,34 @@
+{
+	"role":{
+		"name": "admin",
+		"schema_privileges": [{
+		   "privileges": ["SELECT METADATA", 
+		    			  "SELECT CDS METADATA", 
+		    			  "SELECT", 
+		    			  "INSERT", 
+		    			  "EXECUTE", 
+		    			  "DELETE", 
+		    			  "UPDATE", 
+		    			  "CREATE TEMPORARY TABLE",
+		    			  "TRIGGER"
+		   ]
+		}],
+		"schema_analytic_privileges": [
+            {
+                "privileges":[ "PO_VIEW_PRIVILEGE" ]
+            }
+        ],
+		"object_privileges":[
+			{
+				"name": "PO.Header",
+				"type": "TABLE",
+				"privileges": [ "SELECT" ]
+			},
+			{
+				"name": "PO.Item",
+				"type": "TABLE",
+				"privileges": [ "SELECT" ]
+			}
+		]
+	}
+}
