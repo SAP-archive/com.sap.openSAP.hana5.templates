@@ -6,6 +6,6 @@
       properties:
         url: "${default-url}"
   requires:
-    - name: openSAPHANA5_00-uaa
-    - name: hdi-container-00
+    - name: openSAPHANA5_<group number>-uaa
+    - name: hdi-container-<group number>
     - name: core-db
