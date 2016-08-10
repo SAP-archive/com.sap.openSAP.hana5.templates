@@ -3,7 +3,7 @@ modules:
   type: html5
   path: web
   requires:
-      - name: openSAPHANA5_00-uaa
+      - name: openSAPHANA5_<group number>-uaa
       - name: core-js
         group: destinations
         properties:
