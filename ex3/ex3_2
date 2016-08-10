@@ -1,0 +1,11 @@
+- name: core-js
+  type: nodejs
+  path: core-js
+  provides: 
+    - name: core-js
+      properties:
+        url: "${default-url}"
+  requires:
+    - name: openSAPHANA5_00-uaa
+    - name: hdi-container-00
+    - name: core-db
