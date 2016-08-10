@@ -1,0 +1,12 @@
+modules:
+- name: web
+  type: html5
+  path: web
+  requires:
+      - name: openSAPHANA5_00-uaa
+      - name: core-js
+        group: destinations
+        properties:
+          name: core-backend
+          url: ~{url}
+          forwardAuthToken: true  
