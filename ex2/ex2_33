@@ -23,7 +23,8 @@ BEGIN
       temp_date = :im_start_date;
       im_start_date = :im_end_date;
       im_end_date = :temp_date;
-	  INSERT INTO "log.errors" 
+	  INSERT INTO "log.errors"
+	       (ERROR_TIMESTAMP, OBJECT_SCHEMA_NAME, OBJECT_NAME, PARAMETER, SQL_ERROR_CODE, SQL_ERROR_MESSAGE)
 	       VALUES (current_timestamp,::CURRENT_OBJECT_SCHEMA,::CURRENT_OBJECT_NAME, 
 	               :parameter , ::SQL_ERROR_CODE, ::SQL_ERROR_MESSAGE);
      END;
