@@ -2,7 +2,7 @@
   type: nodejs
   path: core-js
   provides: 
-    - name: core-js
+    - name: core-js-<group number>
       properties:
         url: "${default-url}"
   requires:
