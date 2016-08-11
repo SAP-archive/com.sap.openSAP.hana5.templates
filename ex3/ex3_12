@@ -1,0 +1,11 @@
+ - name: user-js
+   type: nodejs
+   path: user-js
+   provides: 
+     - name: user-js-service
+       properties:
+         url: "${default-url}"
+   requires:
+      - name: openSAPHANA5_00-uaa
+      - name: user-container
+      - name: user-db
