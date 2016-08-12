@@ -5,7 +5,7 @@ sap.ui.core.UIComponent.extend("opensap.odataBasic.Component", {
 
 	createContent: function() {
 		//To-Do: Insert Model Here
-		var oModel = new sap.ui.model.odata.ODataModel("/xsodata/businessPartners.xsodata/", true);
+
 		sap.ui.getCore().setModel(oModel, "bpModel");
 
 		var settings = {
