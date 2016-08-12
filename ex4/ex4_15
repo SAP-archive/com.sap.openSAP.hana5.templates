@@ -18,7 +18,7 @@ sap.ui.core.UIComponent.extend("sap.shineNext.xsjsMultiply.Component", {
 		
 		var oView = sap.ui.view({
 			id: "app",
-			viewName: "sap.shineNext.xsjsMultiply.view.App",
+			viewName: "view.App",
 			type: "XML",
 			viewData: settings
 		});
