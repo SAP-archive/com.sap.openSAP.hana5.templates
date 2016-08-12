@@ -6,7 +6,6 @@ sap.ui.core.UIComponent.extend("opensap.odataBasic.Component", {
 	createContent: function() {
 		//To-Do: Insert Model Here
 
-		sap.ui.getCore().setModel(oModel, "bpModel");
 
 		var settings = {
 			ID: "odataBasic",
