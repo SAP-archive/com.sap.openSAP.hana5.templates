@@ -1,0 +1,11 @@
+ 	callUserUpdate: function() {
+ 		var oModel = sap.ui.getCore().getModel("userModel");
+ 		oModel.setHeaders({"content-type" : "application/json;charset=utf-8"});
+ 		oModel.submitChanges(
+ 			function() {
+ 				sap.m.MessageToast.show("Update successful");
+ 			},
+ 			function() {
+ 				sap.m.MessageToast.show("Update failed");
+ 			});
+ 	},
