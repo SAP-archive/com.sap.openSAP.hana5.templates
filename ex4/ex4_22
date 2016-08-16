@@ -19,22 +19,102 @@ sap.ui.jsview("opensap.odataBasic.view.App", {
 
 
             //Table Column Definitions 
-			var oMeta = sap.ui.getCore().getModel("bpModel").getServiceMetadata();
-            for ( var i = 0; i < oMeta.dataServices.schema[0].entityType[0].property.length; i++) {
-			var property = oMeta.dataServices.schema[0].entityType[0].property[i];
-                oTable.addColumn(new sap.m.Column({
-                    header: new sap.m.Label({
-                        text: property.name
-                    }),
-                    width: "125px"
-                }));
-                columnList.addCell(new sap.m.Text({
-                    text: {
-                        path: "bpModel>"+property.name
-                    },
-                    name: property.name
-                }));
-}
+	          //Table Column Definitions 
+            oTable.addColumn(new sap.m.Column({
+                header: new sap.m.Label({
+                    text: "Partner ID"
+                }),
+                width: "125px"
+            }));
+            columnList.addCell(new sap.m.Text({
+                text: {
+                    path: "bpModel>PARTNERID"
+                },
+                name: "PARTNERID"
+            }));
+
+            oTable.addColumn(new sap.m.Column({
+                header: new sap.m.Label({
+                    text: "Email Address"
+                }),
+                width: "125px"
+            }));
+            columnList.addCell(new sap.m.Text({
+                text: {
+                    path: "bpModel>EMAILADDRESS"
+                },
+                name: "EMAILADDRESS"
+            }));
+
+            oTable.addColumn(new sap.m.Column({
+                header: new sap.m.Label({
+                    text: "Phone Number"
+                }),
+                width: "125px"
+            }));
+            columnList.addCell(new sap.m.Text({
+                text: {
+                    path: "bpModel>PHONENUMBER"
+                },
+                name: "PHONENUMBER"
+            }));
+
+            oTable.addColumn(new sap.m.Column({
+                header: new sap.m.Label({
+                    text: "Fax Number"
+                }),
+                width: "125px"
+            }));
+            columnList.addCell(new sap.m.Text({
+                text: {
+                    path: "bpModel>FAXNUMBER"
+                },
+                name: "FAXNUMBER"
+            }));
+
+            oTable.addColumn(new sap.m.Column({
+                header: new sap.m.Label({
+                    text: "Legal Form"
+                }),
+                width: "125px"
+            }));
+            columnList.addCell(new sap.m.Text({
+                text: {
+                    path: "bpModel>LEGALFORM"
+                },
+                name: "LEGALFORM"
+            }));
+
+            oTable.addColumn(new sap.m.Column({
+                header: new sap.m.Label({
+                    text: "Currency"
+                }),
+                width: "125px"
+            }));
+            columnList.addCell(new sap.m.Text({
+                text: {
+                    path: "bpModel>CURRENCY"
+                },
+                name: "CURRENCY"
+            }));
+
+            oTable.addColumn(new sap.m.Column({
+                header: new sap.m.Label({
+                    text: "Web Address"
+                }),
+                width: "125px"
+            }));
+            columnList.addCell(new sap.m.Link({
+                text: {
+                    path: "bpModel>WEBADDRESS"
+                },
+                href: {
+                    path: "bpModel>WEBADDRESS"
+                },
+                target: "_blank",
+                name: "WEBADDRESS"
+            }));
+
 
 
         var displayPanel = new sap.m.Panel("dispPanel").setHeaderText("Business Partner Details");
