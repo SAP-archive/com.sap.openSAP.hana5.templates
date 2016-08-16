@@ -1,0 +1,36 @@
+	initXSJS: function(app) {
+		var xsjs = require("sap-xsjs");
+		var xsenv = require("sap-xsenv");		
+		var options = xsjs.extend({
+			//	anonymous : true, // remove to authenticate calls
+			redirectUrl: "/index.xsjs",
+			context: { base: global.__base, env: process.env, answer: 42 }
+		});
+
+		//configure HANA
+		try {
+			options = xsjs.extend(options, xsenv.getServices({
+				hana: {
+					tag: "hana"
+				}
+			}));
+		} catch (err) {
+			console.log("[WARN]", err.message);
+		}
+
+
+		// configure UAA
+		try {
+			options = xsjs.extend(options, xsenv.getServices({
+				uaa: {
+					tag: "xsuaa"
+				}
+			}));
+		} catch (err) {
+			console.log("[WARN]", err.message);
+		}
+
+		// start server
+		var xsjsApp = xsjs(options);
+		app.use(xsjsApp);
+	}
