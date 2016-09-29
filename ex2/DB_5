@@ -1,0 +1,13 @@
+      define view ItemView as SELECT from Item {
+      PURCHASEORDERID as "PurchaseOrderItemId", 
+      PURCHASEORDERITEM as "ItemPos",
+      HEADER.PARTNERID as "PartnerId",
+	  PRODUCT as "ProductID",
+	  CURRENCY as "CurrencyCode",
+      GROSSAMOUNT as "Amount",
+      NETAMOUNT as "NetAmount",
+      TAXAMOUNT as "TaxAmount",
+	  QUANTITY as "Quantity",
+	  QUANTITYUNIT as "QuantityUnit",
+	  DELIVERYDATE as "DeliveryDate1"
+   };
