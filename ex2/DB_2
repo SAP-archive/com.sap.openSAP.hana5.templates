@@ -1,0 +1,6 @@
+    Type HistoryT {
+        CREATEDBY : BusinessKey; 
+        CREATEDAT : SDate;
+        CHANGEDBY : BusinessKey;
+        CHANGEDAT : SDate; 
+    };
