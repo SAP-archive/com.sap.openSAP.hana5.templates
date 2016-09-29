@@ -1,0 +1,15 @@
+			callUserService : function() {
+				var oModel = sap.ui.getCore().getModel("userModel");
+				var result = this.getView().getModel().getData();
+				var oEntry = {};
+				oEntry.PERS_NO = "0000000000";
+				oEntry.FIRSTNAME = result.FirstName;
+				oEntry.LASTNAME = result.LastName;
+				oEntry.E_MAIL = result.Email;
+
+				oModel.setHeaders({"content-type" : "application/json;charset=utf-8"});
+				oModel.create("/Users", oEntry, null, function() {
+				    sap.m.MessageToast.show("Create successful");
+				}, this.onErrorCall);
+
+			},
