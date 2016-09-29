@@ -1,0 +1,10 @@
+     type tt_bp_addresses {
+      PARTNERID: String(10);
+      PARTNERROLE: String(3);
+      EMAILADDRESS: String(255);
+      COMPANYNAME: String(80);
+      ADDRESSID: String(10);
+      CITY: String(40);
+      POSTALCODE: String(10);
+      STREET: String(60);  
+    };
