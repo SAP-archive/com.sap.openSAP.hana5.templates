@@ -1,0 +1,2 @@
+  UPDATE "HANA_WORKSHOP_<group_number>"."workshop.exercises.g<group_number>.data::Product.Products" 
+                  SET PRICE = 399.99 WHERE PRODUCTID = 'ProductA';
