@@ -1,0 +1,33 @@
+<script>
+		$.ajaxSetup({
+		    beforeSend: function(xhr,settings) {
+		      if (settings && settings.hasOwnProperty('type')
+		          && settings.type !== 'GET'){
+		    	  var token = getCSRFToken();
+		        xhr.setRequestHeader("X-CSRF-Token", token);
+		      }
+		    },
+		    complete: function(xhr,textStatus) {
+		        var loginPage = xhr.getResponseHeader("x-sap-login-page");
+		        if (loginPage) {
+		            location.href = loginPage + "?x-sap-origin-location=" + encodeURIComponent(window.location.pathname);
+		        }
+		    }
+		});
+
+		function getCSRFToken() {
+		    var token = null;
+		    $.ajax({
+		        url: "/sap/hana/democontent/epmNext/ui/shared/csrf.xsjs",
+		        type: "GET",
+		        async: false,
+		        beforeSend: function(xhr) {
+		            xhr.setRequestHeader("X-CSRF-Token", "Fetch");
+		        },
+		        complete: function(xhr) {
+		            token = xhr.getResponseHeader('X-CSRF-Token');
+		        }
+		    });
+		    return token;
+		}
+</script>
