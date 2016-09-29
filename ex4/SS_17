@@ -1,0 +1,2 @@
+INSERT into "HANA_WORKSHOP_<group_number>"."workshop.exercises.g<group_number>.data::Product.Products" 
+          values( 'ProductA', 'Software', '299.99');
