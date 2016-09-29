@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>SAP HANA Native Development Workshop - Hello World</title>
+<script id="sap-ui-bootstrap" type="text/javascript"
+	src="/sap/ui5/1/resources/sap-ui-core.js"
+	data-sap-ui-libs="sap.ui.ux3,sap.ui.commons"
+	data-sap-ui-theme="sap_bluecrystal">
+	
+</script>
+<script type="text/javascript">
+	var myButton = new sap.ui.commons.Button("btn");
+	myButton.setText("Hello World Demo");
+	myButton.attachPress(function(){$("#btn").fadeOut();});
+	myButton.placeAt("content");
+</script>
+
+</head>
+<body class="sapUiBody" role="application">
+	<div id="content"></div>
+</body>
+</html>
