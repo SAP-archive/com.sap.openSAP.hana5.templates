@@ -1,0 +1,49 @@
+$.import("sap.hana.democontent.epmNext.services", "messages");
+var MESSAGES = $.sap.hana.democontent.epmNext.services.messages;
+function downloadExcel() {
+	var body = '';
+
+	try {
+		var query = 'SELECT TOP 25000 "PurchaseOrderId", "PartnerId", "CompanyName", "CreatedByLoginName", "CreatedAt", "GrossAmount" '
+				+ 'FROM "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::PO.HeaderView" order by "PurchaseOrderId"';
+		$.trace.debug(query);
+		var conn = $.hdb.getConnection();
+		var rs = conn.executeQuery(query);
+
+		body = MESSAGES.getMessage('SEPM_POWRK', '002') + "\t" + // Purchase
+																	// Order ID
+		MESSAGES.getMessage('SEPM_POWRK', '003') + "\t" + // Partner ID
+		MESSAGES.getMessage('SEPM_POWRK', '001') + "\t" + // Company Name
+		MESSAGES.getMessage('SEPM_POWRK', '004') + "\t" + // Employee
+															// Responsible
+		MESSAGES.getMessage('SEPM_POWRK', '005') + "\t" + // Created At
+		MESSAGES.getMessage('SEPM_POWRK', '006') + "\n"; // Gross Amount
+
+		for(var i = 0; i < rs.length; i++){
+			body += rs[i].PurchaseOrderId + "\t" + rs[i].PartnerId + "\t"
+					+ rs[i].CompanyName + "\t" + rs[i].CreatedByLoginName + "\t"
+					+ rs[i].CreatedAt + "\t" + rs[i].GrossAmount + "\n";
+		}
+	} catch (e) {
+		$.response.status = $.net.http.INTERNAL_SERVER_ERROR;
+		$.response.setBody(e.message);
+		return;
+	}
+
+	$.response.setBody(body);
+	$.response.contentType = 'application/vnd.ms-excel; charset=utf-16le';
+	$.response.headers.set('Content-Disposition',
+			'attachment; filename=Excel.xls');
+	$.response.status = $.net.http.OK;
+
+}
+
+var aCmd = $.request.parameters.get('cmd');
+switch (aCmd) {
+case "Excel":
+	downloadExcel();
+	break;
+default:
+	$.response.status = $.net.http.INTERNAL_SERVER_ERROR;
+	$.response.setBody(MESSAGES.getMessage('SEPM_ADMIN', '002', aCmd));
+}
