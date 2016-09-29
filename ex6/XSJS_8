@@ -1,0 +1,5 @@
+var getBpAddressesByRole = XSProc.procedureOfSchema("SAP_HANA_EPM_NEXT",
+"sap.hana.democontent.epmNext.procedures::get_bp_addresses_by_role"); 
+var results = getBpAddressesByRole( { IM_PARTNERROLE: partnerRole}, conn );
+var jsonOut = results;   
+conn.close();
