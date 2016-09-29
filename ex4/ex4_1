@@ -1,6 +1,0 @@
- - name: ui5-lib
-   type: configuration 
-   parameters:
-      ID: com.sap.ui5.dist.sapui5-dist-xsa.XSAC_SAPUI5_FESV2:sapui5_fesv2 # Specifies the the ID of the provider MTA.
-      name: sapui5_fesv2
-      version: "=1.38.3"     # The version (range) of the provider MTA.

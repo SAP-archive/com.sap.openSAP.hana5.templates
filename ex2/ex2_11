@@ -1,6 +1,0 @@
-  - name: CrossSchemaService
-    type: org.cloudfoundry.existing-service
-    parameters:
-      service-name: CROSS_SCHEMA_SFLIGHT_<Group Number>
-    properties:
-      sflight-service-name: ${service-name}

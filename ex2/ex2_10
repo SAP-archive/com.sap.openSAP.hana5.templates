@@ -1,5 +1,0 @@
-   - name: CrossSchemaService
-     group: SERVICE_REPLACEMENTS
-     properties:
-       key: hdi-sflight-service
-       service: ~{sflight-service-name} 
