@@ -1,0 +1,37 @@
+CLASS zcl_ws_<group_number>_amdp_ftext DEFINITION
+  PUBLIC FINAL CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+     INTERFACES if_amdp_marker_hdb .
+
+      TYPES: BEGIN OF ts_acme_item,
+             ITEM_ID   type ZWILE_ACME_ITEM_ID,
+             ITEM      type ZWILE_SSTRING_255,
+             SCORE     type f,
+           END OF ts_acme_item.
+       TYPES: tt_acme_items TYPE STANDARD TABLE OF ts_acme_item.
+
+
+      CLASS-METHODS: search_acme_items IMPORTING VALUE(iv_item_search)  TYPE ZWILE_SSTRING_255
+                                       EXPORTING VALUE(et_items) TYPE tt_acme_items.  
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+
+ENDCLASS.
+
+
+
+CLASS  zcl_ws_<group_number>_amdp_ftext IMPLEMENTATION.
+
+METHOD search_acme_items
+            BY DATABASE PROCEDURE
+            FOR HDB LANGUAGE SQLSCRIPT
+            OPTIONS READ-ONLY
+            USING ZWILE_ACME_ITEM.
+
+    et_items = SELECT ITEM_ID, ITEM, SCORE() FROM ZWILE_ACME_ITEM
+                WHERE CONTAINS((ITEM), iv_item_search, FUZZY(0.7)) ORDER BY SCORE() DESC;
+
+  ENDMETHOD. 
+ENDCLASS.
