@@ -1,0 +1,2 @@
+truncate table "HANA_WORKSHOP_<group_number>"."workshop.exercises.g<group_number>.data::PurchaseOrder.Header";
+truncate table "HANA_WORKSHOP_<group_number>"."workshop.exercises.g<group_number>.data::PurchaseOrder.Item";
