@@ -1,0 +1,3 @@
+$.import("sap.hana.xs.libs.dbutils", "procedures");
+var XSProc = $.sap.hana.xs.libs.dbutils.procedures;
+XSProc.setTempSchema($.session.getUsername().toUpperCase());
