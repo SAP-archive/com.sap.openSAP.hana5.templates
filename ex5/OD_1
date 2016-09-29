@@ -1,0 +1,4 @@
+service namespace "workshop.exercises.g<group number>.services" {
+	"sap.hana.democontent.epmNext.data::MD.BusinessPartner"
+	as "BusinessPartners";
+}
