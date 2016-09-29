@@ -1,0 +1,21 @@
+    //Object Filter
+    loadObjectFilter: function(oEvent) {
+        var oController = this.getView().getController();
+        var searchParam = oEvent.getParameter("suggestValue");
+        if (typeof(searchParam) !== "undefined") {
+            if (searchParam === "*") {
+                searchParam = "";
+            }
+        } else {
+            searchParam = "";
+        }
+        var packageName = sap.ui.getCore().byId("app--Package").getValue();
+        var aUrl = "/sap/hana/democontent/epmNext/services/repository.xsjs?cmd=getObjList&package=" + escape(packageName) + "&obj=" + searchParam;
+        jQuery.ajax({
+            url: aUrl,
+            method: "GET",
+            dataType: "json",
+            success: oController.onLoadObjFilter,
+            error: oController.onErrorCall
+        });
+},
