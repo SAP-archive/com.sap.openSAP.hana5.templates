@@ -1,0 +1,6 @@
+callUserUpdate: function() {
+ var oModel = sap.ui.getCore().getModel("userModel");
+	oModel.submitChanges(
+  function(){sap.m.MessageToast.show("Update successful");},
+function(){sap.m.MessageToast.show("Update failed");});
+},
