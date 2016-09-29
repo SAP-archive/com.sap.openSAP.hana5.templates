@@ -1,0 +1,47 @@
+$.import("sap.hana.democontent.epmNext.services", "session");
+var SESSIONINFO = $.sap.hana.democontent.epmNext.services.session;
+
+/**
+@param {connection} Connection - The SQL connection used in the OData request
+@param {beforeTableName} String - The name of a temporary table with the single entry before the operation (UPDATE and DELETE events only)
+@param {afterTableName} String -The name of a temporary table with the single entry after the operation (CREATE and UPDATE events only)
+ */
+
+function bp_create_before_exit(param) {
+
+	let	after = param.afterTableName;
+	var pStmt;
+	try {
+
+		pStmt = param.connection.prepareStatement('select "sap.hana.democontent.epmNext.data::businessPartnerId".NEXTVAL from dummy');
+		var rs = pStmt.executeQuery();
+		var PartnerId = '';
+		while (rs.next()) {
+			PartnerId = rs.getString(1);
+		}
+		pStmt.close();
+
+		pStmt = param.connection.prepareStatement('update "' + after
+				+ '" set PARTNERID = ?,' + 
+				  '  PARTNERROLE = ?, ' +
+				  '  "HISTORY.CREATEDBY.EMPLOYEEID" = ?,' +
+				  '  "HISTORY.CHANGEDBY.EMPLOYEEID" = ?,' +
+				  '  "HISTORY.CREATEDAT" = now(),' + 
+				  '  "HISTORY.CHANGEDAT" = now(),' + 
+				  '  "CURRENCY" = ?');
+		pStmt.setString(1, PartnerId);	
+		pStmt.setString(2, '01');	
+		pStmt.setString(3, '0000000033');
+		pStmt.setString(4, '0000000033');
+		pStmt.setString(5, 'EUR');		
+		
+		pStmt.execute();
+		pStmt.close();
+
+		
+	}
+	catch (e) {
+
+	}
+
+}
