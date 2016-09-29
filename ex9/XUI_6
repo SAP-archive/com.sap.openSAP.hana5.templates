@@ -1,0 +1,8 @@
+	//Object Filter
+	 loadObjectFilter: function(oEvent){
+	//To-Do: Implement Object Suggest Event Handler Call
+	 },
+	 
+	 onLoadObjFilter: function(myJSON){
+		//To-Do: Implement Object Suggest Event Handler
+		},
