@@ -1,0 +1,45 @@
+CLASS zcl_ws_<group_number>_amdp_test DEFINITION
+  PUBLIC FINAL CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    INTERFACES if_amdp_marker_hdb .
+    TYPES: BEGIN OF ts_bp_addresses,
+             partnerid(10)     TYPE c,
+             partnerrole(3)    TYPE c,
+             emailaddress(255) TYPE c,
+             companyname(80)   TYPE c,
+             addressid(10)     TYPE c,
+             city(40)          TYPE c,
+             postalcode(10)    TYPE c,
+             street(60)        TYPE c,
+           END OF ts_bp_addresses.
+    TYPES: tt_bp_addresses TYPE STANDARD TABLE OF ts_bp_addresses.
+
+    CLASS-METHODS: get_bp_addresses_by_role IMPORTING VALUE(im_partnerrole)  TYPE char03
+                                            EXPORTING VALUE(ex_bp_addresses) TYPE tt_bp_addresses.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+
+ENDCLASS.
+
+
+
+CLASS ZCL_WS_<group number>_AMDP_TEST IMPLEMENTATION.
+
+
+  METHOD get_bp_addresses_by_role
+                     BY DATABASE PROCEDURE
+                     FOR HDB LANGUAGE SQLSCRIPT
+                     OPTIONS READ-ONLY.
+
+    ex_bp_addresses =
+        select a."PARTNERID", a."PARTNERROLE", a."EMAILADDRESS", a."COMPANYNAME",
+            a."ADDRESSES.ADDRESSID" as "ADDRESSID", b."CITY", b."POSTALCODE", b."STREET"
+              from "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::EPM.MasterData.BusinessPartner" as a
+                 inner join "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::EPM.MasterData.Addresses" as b
+                     on a."ADDRESSES.ADDRESSID" = b."ADDRESSID"
+                              where a."PARTNERROLE" = :im_partnerrole;
+
+  ENDMETHOD.
+ENDCLASS.
