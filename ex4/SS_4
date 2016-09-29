@@ -1,0 +1,6 @@
+ type tt_product_sale_price {
+   PRODUCTID: String(10);
+   CATEGORY: String(40);
+   PRICE: Decimal(15,2);
+   SALEPRICE: Decimal(15,2); 
+ };
