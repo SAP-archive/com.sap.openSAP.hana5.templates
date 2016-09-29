@@ -1,0 +1,18 @@
+@AbapCatalog.sqlViewName: 'Z<group number>_BUSPART'
+define view ZWS_<group number>_BUSPART as select 
+from snwd_bpa
+ association [1]    to sepm_sddl_address        as address              on $projection.address_key               =  address.address_key
+ association [1]    to tcurc                    as currency             on currency_code                         =  waers
+{
+    key node_key as business_partner_key,
+    bp_role      as business_partner_role,
+    email_address,
+    address_guid as address_key,
+    bp_id        as business_partner_id,
+    company_name,
+    @Semantics.currencyCode currency_code,
+    address,               // association
+    address.street,
+    address.city,
+    address.country 
+}
