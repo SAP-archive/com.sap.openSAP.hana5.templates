@@ -1,0 +1,21 @@
+service namespace "workshop.exercises.g<group>.services" { 
+  
+ "sap.hana.democontent.epmNext.data::MD.BusinessPartner"
+	as "BusinessPartners"
+	navigates ("ToAddresses" as "AddRef")
+   create events(
+     before "workshop.exercises.g<group>.services:businessPartnersAddresses.xsjslib::bp_create_before_exit");
+	
+ "sap.hana.democontent.epmNext.data::MD.Addresses"
+	as "Addresses"
+	without ("POINT")
+	create events(
+	  before "workshop.exercises.g<group>.services:businessPartnersAddresses.xsjslib::address_create_before_exit");
+	
+ association "ToAddresses" principal "BusinessPartners"("ADDRESSES.ADDRESSID")
+	  multiplicity "1" 
+	  dependent "Addresses"("ADDRESSID") multiplicity "1" 
+	  over "sap.hana.democontent.epmNext.data::MD.Addresses" 
+           principal("ADDRESSID") dependent ("ADDRESSID")
+           update using "workshop.exercises.g<group>.services:businessPartnersAddresses.xsjslib::assocation_create_exit";	
+} 
