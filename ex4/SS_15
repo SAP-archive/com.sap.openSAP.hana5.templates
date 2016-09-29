@@ -1,0 +1,21 @@
+namespace workshop.exercises.g<group_number>.data;
+
+@Schema: 'HANA_WORKSHOP_<group_number>'
+context Product {
+
+@Catalog.tableType: #COLUMN 
+    Entity Products{
+     key PRODUCTID: String(10);
+     CATEGORY: String(40);
+     PRICE: Decimal(15,2);
+    }; 
+
+ @Catalog.tableType: #COLUMN
+    Entity ProductLog{
+     key PRODUCTID: String(10);
+     key LOGID: Integer;
+     key DATETIME: UTCDateTime;
+     key USERNAME: String(20);
+     LOGTEXT: String(500);
+    };
+};
