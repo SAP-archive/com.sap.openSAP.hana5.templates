@@ -1,0 +1,18 @@
+REPORT zws_<group_number>_amdp_test.
+
+DATA: lv_partner_role(3) TYPE c value '01'.
+DATA: lt_bp_addresses TYPE ZCL_WS_<group_number>_AMDP_TEST=>tt_bp_addresses.
+
+ZCL_WS_<group_number>_AMDP_TEST=>get_bp_addresses_by_role(
+      EXPORTING im_partnerrole  = lv_partner_role
+      IMPORTING ex_bp_addresses = lt_bp_addresses ).
+
+  TRY.
+      cl_salv_table=>factory(
+               IMPORTING r_salv_table = data(lo_alv)
+                CHANGING  t_table      = lt_bp_addresses ).
+      lo_alv->get_columns( )->get_column( 'EMAILADDRESS' )->set_output_length( '30' ).
+      lo_alv->get_columns( )->get_column( 'COMPANYNAME' )->set_output_length( '30' ).
+      lo_alv->display( ).
+   CATCH cx_salv_error.
+ENDTRY.
