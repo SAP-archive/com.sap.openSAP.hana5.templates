@@ -1,0 +1,3 @@
+select PRODUCTID, CATEGORY, PRICE, "HANA_WORKSHOP_<group_number>"."workshop.exercises.g<group_number>.functions::apply_discount"(PRICE, 0.33 )
+  as "SALEPRICE" from "sap.hana.democontent.epmNext.data::MD.Products";
+
