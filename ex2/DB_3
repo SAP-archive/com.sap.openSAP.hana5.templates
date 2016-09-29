@@ -1,0 +1,17 @@
+@Catalog.tableType : #COLUMN 
+    Entity Header {
+        key  PURCHASEORDERID: BusinessKey;
+        ITEMS: Association[*] to Item on ITEMS.PURCHASEORDERID = PURCHASEORDERID;  
+        HISTORY: HistoryT;
+        NOTEID: BusinessKey null;
+        PARTNER: BusinessKey;
+        CURRENCY: CurrencyT;
+        GROSSAMOUNT: AmountT;
+        NETAMOUNT: AmountT;
+        TAXAMOUNT: AmountT;
+        LIFECYCLESTATUS: StatusT;
+        APPROVALSTATUS: StatusT;
+        CONFIRMSTATUS: StatusT;
+        ORDERINGSTATUS: StatusT;
+        INVOICINGSTATUS: StatusT;
+    };
