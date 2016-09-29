@@ -1,0 +1,8 @@
+schema= "HANA_WORKSHOP_<group number>";
+start_with= 200000000;
+maxvalue= 299999999;
+nomaxvalue=false;
+minvalue= 1; 
+nominvalue=true;
+cycles= false;
+depends_on_table= "workshop.exercises.g<group number>.data::PurchaseOrder.Header";
