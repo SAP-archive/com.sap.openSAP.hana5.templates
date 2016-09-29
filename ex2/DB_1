@@ -1,0 +1,7 @@
+	type BusinessKey : String(10);
+	type SDate : LocalDate;
+	type CurrencyT : String(5);
+	type AmountT : Decimal(15,2);
+	type QuantityT : Decimal(13,3);
+	type UnitT: String(3);
+	type StatusT: String(1);
