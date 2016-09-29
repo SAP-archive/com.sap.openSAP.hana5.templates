@@ -1,0 +1,14 @@
+ var_out = 
+		select company_name, region, sales, orders, sales_rank, order_rank from(                
+		           select  "COMPANYNAME" as company_name, "REGION" as region, 
+		              sum("NETAMOUNT") as sales, 
+		              count("SALESORDERID") as orders,
+		        	  dense_rank() over ( order by sum("NETAMOUNT") desc ) as sales_rank,
+		        	  dense_rank() over ( order by count("SALESORDERID") desc ) as order_rank
+		              from "sap.hana.democontent.epmNext.models::SALES_ORDER_RANKING"
+		              where date_sql between :IP_FR_DTE and :IP_TO_DTE
+		                and "REGION" = :IP_REGION
+		              group by "COMPANYNAME", "REGION" 
+		              order by sales_rank, "COMPANYNAME"
+		)                            
+		where sales_rank < 11;   
