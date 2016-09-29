@@ -1,0 +1,18 @@
+REPORT ZWS_<group_number>_DB_PROC_PROXY_TEST.
+
+DATA: lv_partner_role TYPE ZIF_ZWS_<group_number>_GET_BP_ADDRESSES=>im_partnerrole value '02'.
+DATA: lt_bp_addresses TYPE STANDARD TABLE OF ZIF_ZWS_<group_number>_GET_BP_ADDRESSES=>ex_bp_addresses.
+
+CALL DATABASE PROCEDURE zws_<group_number>_get_bp_addresses
+    EXPORTING   im_partnerrole = lv_partner_role
+    IMPORTING   ex_bp_addresses = lt_bp_addresses.
+
+  TRY.
+      cl_salv_table=>factory(
+               IMPORTING r_salv_table = data(lo_alv)
+                CHANGING  t_table      = lt_bp_addresses ).
+      lo_alv->get_columns( )->get_column( 'EMAILADDRESS' )->set_output_length( '30' ).
+      lo_alv->get_columns( )->get_column( 'COMPANYNAME' )->set_output_length( '30' ).
+      lo_alv->display( ).
+   CATCH cx_salv_error.
+ENDTRY.
