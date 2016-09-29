@@ -1,0 +1,6 @@
+{ 
+	"description": "My first SQLScript job", 
+	"action": "sap.hana.democontent.epmNext.procedures::jobsCreateEntry", 
+	"schedules": [ { 
+	   "description": "Will run every 10 seconds", 
+	   "xscron": "* * * * * * 0:59/10" } ]}
