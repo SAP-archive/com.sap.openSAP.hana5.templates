@@ -1,0 +1,18 @@
+$.import("sap.hana.democontent.epmNext.services", "session");
+var SESSIONINFO = $.sap.hana.democontent.epmNext.services.session;
+
+function getAddressesByRole() {
+	
+// To Do
+	
+}
+
+var aCmd = $.request.parameters.get('cmd');
+switch (aCmd) {
+case "getAddressesByRole":
+	getAddressesByRole();
+	break;
+default:
+	$.response.status = $.net.http.INTERNAL_SERVER_ERROR;
+	$.response.setBody('Invalid Request Method');
+}
