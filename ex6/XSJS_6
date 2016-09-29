@@ -1,0 +1,17 @@
+	// Get the value of the partner role URL parameter
+	var partnerRole = $.request.parameters.get("PartnerRole").toUpperCase();
+
+    // Make a connnection to the datbase and call the procedure
+	var conn = $.db.getConnection();
+	var cst = conn.prepareCall('CALL SAP_HANA_EPM_NEXT."sap.hana.democontent.epmNext.procedures::get_bp_addresses_by_role"(?,?)');
+	cst.setString(1, partnerRole);
+	cst.execute();
+	var rs = cst.getResultSet( );
+	var jsonOut = SESSIONINFO.recordSetToJSON(rs, 'EX_BP_ADDRESSES');
+	cst.close();	
+	conn.close();
+	
+	// Pass output to response		
+	$.response.status = $.net.http.OK;
+	$.response.contentType = "application/json";
+	$.response.setBody(JSON.stringify(jsonOut));
