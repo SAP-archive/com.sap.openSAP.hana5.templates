@@ -1,0 +1,3 @@
+CALL "GRANT_ACTIVATED_ROLE"(
+   'system-local.workshop.exercises.g<group number>::developer',
+   'WORKSHOP_<group number>');
