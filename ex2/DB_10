@@ -1,0 +1,12 @@
+import = [
+            {
+                cdstable = "workshop.exercises.g<group number>.data::PurchaseOrder.Header";
+                file = "workshop.exercises.g<group number>.data:header.csv";
+                header = false;
+            },
+            {
+                cdstable = "workshop.exercises.g<group number>.data::PurchaseOrder.Item";
+                file = "workshop.exercises.g<group number>.data:item.csv";
+                header = false;
+            }            
+         ];
