@@ -1,0 +1,4 @@
+ CALL "GRANT_SCHEMA_PRIVILEGE_ON_ACTIVATED_CONTENT"(
+  'EXECUTE',
+  '<Your Schema>',
+  '<Your User>')
