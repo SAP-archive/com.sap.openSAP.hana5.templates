@@ -1,0 +1,4 @@
+select * from "HANA_WORKSHOP_<group_number>"."workshop.exercises.g<group_number>.functions::get_employees_by_name_filter( '*ll*' );
+
+
+
