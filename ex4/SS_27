@@ -1,0 +1,16 @@
+REPORT zws_<group_number>_ftext_test.
+
+parameter: p_search(128) TYPE c obligatory LOWER CASE default 'seed'.
+DATA: lt_items TYPE zcl_ws_<group_number>_amdp_ftext=>tt_acme_items.
+
+Zcl_ws_<group_number>_amdp_ftext=>search_acme_items(
+      EXPORTING iv_item_search  = conv #( p_search )
+      IMPORTING et_items        = lt_items ).
+
+  TRY.
+      cl_salv_table=>factory(
+               IMPORTING r_salv_table = data(lo_alv)
+                CHANGING  t_table      = lt_items ).
+      lo_alv->display( ).
+   CATCH cx_salv_error.
+ENDTRY.
