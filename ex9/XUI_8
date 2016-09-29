@@ -1,0 +1,10 @@
+    onLoadObjFilter: function(myJSON) {
+        var oSearchControl = sap.ui.getCore().byId("app--Object");
+        oSearchControl.destroySuggestionItems();
+        for (var i = 0; i < myJSON.length; i++) {
+            oSearchControl.addSuggestionItem(new sap.ui.core.Item({
+                text: myJSON[i].OBJECT_NAME
+            }));
+
+        }
+},
