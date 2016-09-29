@@ -1,0 +1,23 @@
+	//Table Column Definitions 
+        	var oMeta = sap.ui.getCore().getModel("bpModel").getServiceMetadata();
+            var columnLbl = '';        	
+            for ( var i = 0; i < oMeta.dataServices.schema[0].entityType[0].property.length; i++) {
+                var property = oMeta.dataServices.schema[0].entityType[0].property[i];
+				for ( var i1 = 0; i1 < property.extensions.length; i1++) {
+	 			 if(property.extensions[i1].name === "label"){
+	 				 columnLbl = property.extensions[i1].value;
+	 			 }
+	   		    }                
+                oTable.addColumn(new sap.m.Column({
+                    header: new sap.m.Label({
+                        text: columnLbl
+                    }),
+                    width: "125px"
+                }));
+                columnList.addCell(new sap.m.Text({
+                    text: {
+                        path: "bpModel>"+property.name
+                    },
+                    name: property.name
+                }));
+            }	
