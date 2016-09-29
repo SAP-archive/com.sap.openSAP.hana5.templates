@@ -1,0 +1,32 @@
+<core:View
+	controllerName="view.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" >
+    <Panel 
+	   headerText="REST API - File API"
+	   expandable="true"
+	   expanded="true">
+	   <List >
+	       <InputListItem label="Repository Package:">
+	           <Input id="Package" value="{/Package}"
+	                  showSuggestion="true" suggest="loadPackageFilter"  />
+	       </InputListItem>
+	       <InputListItem label="Object:">
+	           <Input id="Object" value="{/Object}" 
+	                      showSuggestion="true" suggest="loadObjectFilter" />
+	       </InputListItem>
+ 	       <InputListItem label="Extension:">
+	           <Input id="Extension" value="{/Extension}" 
+	                      showSuggestion="true" suggest="loadExtFilter" />
+	       </InputListItem>
+	   </List>
+	   <Button text="Display" press="onRepoDisplay" />
+	</Panel> 
+    <Panel 
+	   id = "PanelContent"
+	   headerText="Repository Object Details"
+	   expandable="true"
+	   expanded="true">	
+	</Panel>   
+</core:View>
