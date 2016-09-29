@@ -1,0 +1,30 @@
+/**
+@param {connection} Connection - The SQL connection used in the OData request
+@param {principalTableName} String - The name of a temporary table with the entity type at the principal end of the association
+@param {dependentTableName} String -The name of a temporary table with the dependent entity type
+ */
+
+
+function assocation_create_exit(param){
+	let	princ = param.principalTableName;
+	let	dep = param.dependentTableName;
+
+
+	var	pStmt = param.connection.prepareStatement('select * from "' + princ + '"');
+	var Principal = SESSIONINFO.recordSetToJSON(pStmt.executeQuery(), 'Details');
+	pStmt.close();
+	
+	var	pStmt = param.connection.prepareStatement('select * from "' + dep + '"');
+	var Dependent = SESSIONINFO.recordSetToJSON(pStmt.executeQuery(), 'Details');
+	pStmt.close();	
+	
+	$.trace.debug(JSON.stringify(Principal));
+	$.trace.debug(JSON.stringify(Dependent));
+	var pStmt = param.connection.prepareStatement('update "SAP_HANA_EPM_NEXT"."sap.hana.democontent.epmNext.data::MD.BusinessPartner" ' +
+			    ' SET "ADDRESSES.ADDRESSID" = ? WHERE "PARTNERID" = ? ');
+	pStmt.setString(1, Dependent.Details[0].ADDRESSID);
+	pStmt.setString(2, Principal.Details[0].PARTNERID);		
+	pStmt.execute();
+	pStmt.close();	
+			
+}
