@@ -1,0 +1,81 @@
+<core:View
+	controllerName="view.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" >
+	<ScrollContainer
+    height="100%"
+    width="100%"
+    horizontal="true"
+    vertical="true" >
+    <Panel 
+	   headerText="New User Record Details"
+	   expandable="true"
+	   expanded="true">
+	   <List width = "400px">
+	       <InputListItem label="First Name">
+	           <Input id="fName" value="{/FirstName}" />
+	       </InputListItem>
+	       <InputListItem label="Last Name">
+	           <Input id="lName" value="{/LastName}" />
+	       </InputListItem>
+	       <InputListItem label="Email">
+	           <Input id="email" value="{/Email}" />
+	       </InputListItem>	  
+	   </List>
+	   <Button text="Create Record" press="callUserService" />
+	   <Button text="Update Changes" press="callUserUpdate" />
+	</Panel>   
+	<Panel 
+	   headerText="User List"
+	   expandable="true"
+	   expanded="true">
+	    <Table 
+	        tableId="userTable"
+	        growingThreshold="10"
+	        growing="true"
+	        items="{
+                path: 'userModel>/Users',
+                sorter: { path: 'PERS_NO' }}"
+            >
+        <columns>
+            <Column>
+                <header><Label text="User ID" /></header>
+            </Column>
+            <Column>
+                <header><Label text="First Name" /></header>
+            </Column>
+            <Column>
+                <header><Label text="Last Name" /></header>
+            </Column>
+            <Column>
+                <header><Label text="Email" /></header>
+            </Column>            
+        </columns>
+         <items>
+             <ColumnListItem>
+                 <cells>
+                     <Input 
+                        value="{path: 'userModel>PERS_NO'}"
+                        name="PERS_NO"
+                        editable="false">
+                     </Input>
+                     <Input 
+                        value="{path: 'userModel>FIRSTNAME'}"
+                        name="FIRSTNAME">
+                     </Input>
+                     <Input 
+                        value="{path: 'userModel>LASTNAME'}"
+                        name="LASTNAME">
+                     </Input>
+                     <Input 
+                        value="{path: 'userModel>E_MAIL'}"
+                        name="E_MAIL">
+                     </Input>                      
+                 </cells>
+             </ColumnListItem>
+         </items>    
+	    </Table>
+	</Panel>
+   </ScrollContainer>
+</core:View>
