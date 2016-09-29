@@ -1,0 +1,2 @@
+var oModel = new sap.ui.model.odata.ODataModel("/sap/hana/democontent/epmNext/services/businessPartners.xsodata/", true);
+          sap.ui.getCore().setModel(oModel, "bpModel"); 
