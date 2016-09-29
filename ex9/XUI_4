@@ -1,0 +1,8 @@
+    onErrorCall: function(jqXHR) {
+        if (jqXHR.responseText === "NaN") {
+            sap.m.MessageBox.alert("Invalid Input Value");
+        } else {
+            sap.m.MessageBox.alert(jqXHR.responseText);
+        }
+        return;
+}
