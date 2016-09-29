@@ -1,0 +1,15 @@
+@Catalog.tableType : #COLUMN 
+    Entity Item {
+        key  PURCHASEORDERID: BusinessKey;
+        key  PURCHASEORDERITEM: BusinessKey;
+        HEADER: Association[1] to Header on HEADER.PURCHASEORDERID = PURCHASEORDERID;
+        PRODUCT:  BusinessKey;
+        NOTEID: BusinessKey null;
+        CURRENCY: CurrencyT;
+        GROSSAMOUNT: AmountT;
+        NETAMOUNT: AmountT;
+        TAXAMOUNT: AmountT;
+		QUANTITY: QuantityT;
+		QUANTITYUNIT: UnitT;
+		DELIVERYDATE: SDate;
+    };
