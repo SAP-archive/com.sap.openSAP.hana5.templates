@@ -1,0 +1,5 @@
+service namespace "workshop.exercises.g<group number>.services" {
+   "sap.hana.democontent.epmNext.data::User.Details" as "Users"
+      create using 
+      "sap.hana.democontent.epmNext.services:usersCreateMethod.xsjslib::usersCreate";
+}
