@@ -1,7 +1,5 @@
 PROCEDURE "get_product_by_filter" (
       IN im_product_filter_string varchar(5000),
-      IN im_start_date date,
-      IN im_end_date date, 
       OUT EX_PRODUCTS TABLE (
                    PRODUCTID NVARCHAR(10),
                    DELIVERYDATE DAYDATE,
@@ -23,9 +21,7 @@ filtered_items  =
                pi.DELIVERYDATE 
                   from :user_filtered_products as p
                       inner join "PO.Item" as pi
-                           on p.productid = pi."PRODUCT.PRODUCTID"
-                              where pi.DELIVERYDATE >= :im_start_date
-                                and pi.DELIVERYDATE <= :im_end_date;
+                           on p.productid = pi."PRODUCT.PRODUCTID" ;
 
 aggregated_filtered_items = 
           SELECT  PRODUCTID, DELIVERYDATE, 
@@ -40,4 +36,5 @@ CALL "calculate_cumulative_sum_of_delivered_products"(
 
 ex_products = select * from :PRODUCTS order by PRODUCTID, DELIVERYDATE;
 
-END;
+END
+
