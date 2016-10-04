@@ -3,9 +3,6 @@
    path: web
    requires:
       - name: openSAPHANA5_<group number>-uaa
-      - name: ui5-lib
-        properties:
-          ui5liburl: ~{url}
       - name: core-js-service
         group: destinations
         properties:
