@@ -1,17 +1,20 @@
-callUserService: function() {
- 		var oModel = sap.ui.getCore().getModel("userModel");
- 		var result = this.getView().getModel().getData();
- 		var oEntry = {};
- 		oEntry.UserId = "0000000000";
- 		oEntry.FirstName = result.FirstName;
- 		oEntry.LastName = result.LastName;
- 		oEntry.Email = result.Email;
- 		oEntry.ZMYNEW1 = "";
+	callUserService: function() {
+		var oModel = sap.ui.getCore().getModel("userModel");
+		var result = this.getView().getModel().getData();
+		var oEntry = {};
+		oEntry.UserId = "0000000000";
+		oEntry.FirstName = result.FirstName;
+		oEntry.LastName = result.LastName;
+		oEntry.Email = result.Email;
+		oEntry.ZMYNEW1 = "";
 
- 		oModel.setHeaders({
- 			"content-type": "application/json;charset=utf-8"
- 		});
- 		oModel.create("/Users", oEntry, null, function() {
- 			sap.m.MessageToast.show("Create successful");
- 		}, this.onErrorCall);
- 	},
+		oModel.setHeaders({
+			"content-type": "application/json;charset=utf-8"
+		});
+		var mParams = {};
+		mParams.success = function() {
+			sap.m.MessageToast.show("Create successful");
+		};
+		mParams.error = this.onErrorCall;
+		oModel.create("/Users", oEntry, mParams);
+	},
