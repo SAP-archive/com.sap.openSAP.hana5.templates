@@ -1,6 +1,6 @@
-- name: core-js
+- name: core_js
   type: nodejs
-  path: core-js
+  path: core_js
   provides: 
     - name: core-js-service
       properties:
@@ -8,4 +8,4 @@
   requires:
     - name: openSAPHANA5_<group number>-uaa
     - name: hdi-container
-    - name: core-db
+    - name: core_db
