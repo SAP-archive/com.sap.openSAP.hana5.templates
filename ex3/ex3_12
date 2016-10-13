@@ -1,6 +1,6 @@
- - name: user-js
+ - name: user_js
    type: nodejs
-   path: user-js
+   path: user_js
    provides: 
      - name: user-js-service
        properties:
