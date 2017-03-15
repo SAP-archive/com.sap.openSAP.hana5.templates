@@ -1,63 +1,49 @@
 /*eslint no-console: 0, no-unused-vars: 0, no-use-before-define: 0, no-redeclare: 0*/
-jQuery.sap.declare("opensap.odataTest.Component");
+sap.ui.define([
+	"sap/ui/core/UIComponent",
+	"sap/ui/Device",
+	"opensap/odataTest/model/models"
+], function(UIComponent, Device, models) {
+	"use strict";
 
-sap.ui.core.UIComponent.extend("opensap.odataTest.Component", {
-	init: function() {
-		jQuery.sap.require("sap.m.MessageBox");
-		jQuery.sap.require("sap.m.MessageToast");
+	return UIComponent.extend("opensap.odataTest.Component", {
 
-		var model = new sap.ui.model.json.JSONModel({});
-		sap.ui.getCore().setModel(model);
-		var oConfig = new sap.ui.model.json.JSONModel({});
-		sap.ui.getCore().setModel(oConfig, "config");
-		this.getSessionInfo();
+		metadata: {
+			manifest: "json"
+		},
 
-		sap.ui.core.UIComponent.prototype.init.apply(
-			this, arguments);
-	},
+		init: function() {
+			jQuery.sap.require("sap.m.MessageBox");
+			jQuery.sap.require("sap.m.MessageToast");
+			this.setModel(models.createDeviceModel(), "device");
 
-	createContent: function() {
+			sap.ui.core.UIComponent.prototype.init.apply(
+				this, arguments);
+			this.getSessionInfo();
+		},
 
-		var settings = {
-			ID: "App",
-			title: "Workshop OData Test",
-			description: "Workshop OData Test"
-		};
+		destroy: function() {
+			// call the base component's destroy function
+			UIComponent.prototype.destroy.apply(this, arguments);
+		},
 
-		var oView = sap.ui.view({
-			id: "App",
-			viewName: "odataView.App",
-			type: "XML",
-			viewData: settings
-		});
+		getSessionInfo: function() {
+			var aUrl = "/xsjs/exercisesMaster.xsjs?cmd=getSessionInfo";
+			this.onLoadSession(
+				JSON.parse(jQuery.ajax({
+					url: aUrl,
+					method: "GET",
+					dataType: "json",
+					async: false
+				}).responseText));
+		},
 
-		var page = new sap.m.Page("pageID", {
-			title: "Workshop CDS and OData Test",
-			showHeader: false,
-			content: oView
-		});
-		page.setBusyIndicatorDelay(10);
-		oView.setModel(sap.ui.getCore().getModel(
-			"config"), "config");
-		oView.setModel(sap.ui.getCore().getModel());
-		return page;
-	},
-
-	getSessionInfo: function() {
-		var aUrl = "/xsjs/exercisesMaster.xsjs?cmd=getSessionInfo";
-		this.onLoadSession(
-			JSON.parse(jQuery.ajax({
-				url: aUrl,
-				method: "GET",
-				dataType: "json",
-				async: false
-			}).responseText));
-	},
-
-	onLoadSession: function(myJSON) {
-		for (var i = 0; i < myJSON.session.length; i++) {
-			var config = sap.ui.getCore().getModel("config");
-			config.setProperty("/UserName", myJSON.session[i].UserName);
+		onLoadSession: function(myJSON) {
+			for (var i = 0; i < myJSON.session.length; i++) {
+				var config = this.getModel("config");
+				config.setProperty("/UserName", myJSON.session[i].UserName);
+			}
 		}
-	}
+	});
+
 });
