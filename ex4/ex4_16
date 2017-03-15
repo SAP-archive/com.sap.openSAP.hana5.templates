@@ -1,5 +1,5 @@
 <core:View
-	controllerName="view.App"
+	controllerName="sap.shineNext.xsjsMultiply.controller.App"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core" >
