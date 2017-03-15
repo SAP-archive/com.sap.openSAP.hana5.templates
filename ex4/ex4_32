@@ -1,5 +1,5 @@
 <core:View
-	controllerName="sap.shineNext.odataDeep.view.App"
+	controllerName="sap.shineNext.odataDeep.controller.App"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core" >
