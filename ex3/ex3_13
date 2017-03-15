@@ -9,7 +9,7 @@
           name: core-backend
           url: ~{url}
           forwardAuthToken: true 
-      - name: user-js-service
+      - name: user_js_api
         group: destinations
         properties:
           name: user-backend
