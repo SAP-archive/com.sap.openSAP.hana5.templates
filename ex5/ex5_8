@@ -1,8 +1,9 @@
+/*eslint no-console: 0, no-unused-vars: 0, consistent-return: 0, new-cap: 0*/
 "use strict";
 var express = require("express");
 var app = express.Router();
 var os = require("os");
-var TextBundle = require("sap-textbundle").TextBundle;
+var TextBundle = require("@sap/textbundle").TextBundle;
 var langparser = require("accept-language-parser");
 
 function getLocale(req) {
