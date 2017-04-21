@@ -21,9 +21,6 @@
     "body-parser": "~1.17",
     "elementtree": "latest"
   },
-  "devDependencies": {
-    "@sap/xsjs-test": "2.0.0"
-  },
   "files": [],
   "main": "server.js",
   "name": "core_js",
