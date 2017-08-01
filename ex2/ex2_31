@@ -37,4 +37,3 @@ CALL "calculate_cumulative_sum_of_delivered_products"(
 ex_products = select * from :PRODUCTS order by PRODUCTID, DELIVERYDATE;
 
 END
-
