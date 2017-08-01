@@ -5,7 +5,7 @@ PROCEDURE "get_address" ( IN IM_ADDRESSID NVARCHAR(10),
                                "BUILDING" NVARCHAR(10) , "COUNTRY" NVARCHAR(3),
                                "REGION" NVARCHAR(4) , "ADDRESSTYPE" NVARCHAR(2),
                                "VALIDITY.STARTDATE" DATE , "VALIDITY.ENDDATE" DATE ,
-                               "LATITUDE" DOUBLE , "LONGITUDE" DOUBLE ) )
+                               "LATITUDE" DOUBLE , "LONGITUDE" DOUBLE, "POINT" ST_POINT ) )
    LANGUAGE SQLSCRIPT
    SQL SECURITY INVOKER
    --DEFAULT SCHEMA <default_schema_name>
