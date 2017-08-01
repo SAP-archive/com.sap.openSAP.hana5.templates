@@ -1,10 +1,10 @@
 {
-  "hdi-central-service": {
-     "object_owner": {
-       "container_roles":["admin", "core_db#"]
-     },
-     "application_user": {
-       "container_roles":["admin"]
-     }
-   } 
+  "central-db-service": {
+    "object_owner" : {
+      "container_roles":["consumption", "admin#"]
+    },
+    "application_user" : {
+      "container_roles":["consumption"]
+    }
+  }
 }
