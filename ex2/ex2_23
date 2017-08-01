@@ -11,7 +11,7 @@ BEGIN
 PO_CREATE_CNT = SELECT COUNT(*) AS CREATE_CNT, "HISTORY.CREATEDBY.EMPLOYEEID" AS EID 
          FROM "PO.Header" 
             WHERE PURCHASEORDERID IN (
-                         SELECT PURCHASEORDERID FROM "PO.Item" 
+                         SELECT "HEADER.PURCHASEORDERID" as "PURCHASEORDERID" FROM "PO.Item" 
                                    WHERE "PRODUCT.PRODUCTID" IS NOT NULL)
                 AND MONTH("HISTORY.CREATEDAT") = MONTH(:im_fdate)
           GROUP BY  "HISTORY.CREATEDBY.EMPLOYEEID";
@@ -19,12 +19,12 @@ PO_CREATE_CNT = SELECT COUNT(*) AS CREATE_CNT, "HISTORY.CREATEDBY.EMPLOYEEID" AS
 PO_CHANGE_CNT = SELECT COUNT(*) AS CHANGE_CNT, "HISTORY.CHANGEDBY.EMPLOYEEID" AS EID
            FROM "PO.Header"  
              WHERE PURCHASEORDERID IN (
-                          SELECT PURCHASEORDERID  FROM "PO.Item"
+                          SELECT "HEADER.PURCHASEORDERID" as "PURCHASEORDERID" FROM "PO.Item" 
                                     WHERE "PRODUCT.PRODUCTID" IS NOT NULL)
                 AND MONTH("HISTORY.CREATEDAT") = MONTH(:im_fdate)                                    
            GROUP BY  "HISTORY.CHANGEDBY.EMPLOYEEID";
 
-EMP_PO_COMBINED_CNT = 
+EMP_PO_COMBINED_CNT  = 
           SELECT EMPLOYEEID,
                 "get_full_name"("NAME.FIRST", "NAME.MIDDLE", "NAME.LAST") as FULLNAME,
                 crcnt.CREATE_CNT, chcnt.CHANGE_CNT,  
@@ -34,7 +34,7 @@ EMP_PO_COMBINED_CNT =
                             ON emp.EMPLOYEEID = crcnt.EID
                     LEFT OUTER JOIN :PO_CHANGE_CNT AS chcnt
                             ON emp.EMPLOYEEID = chcnt.EID
-                    ORDER BY COMBINED_CNT DESC;
-         
-RETURN SELECT * FROM :EMP_PO_COMBINED_CNT;                    
+                    ORDER BY COMBINED_CNT DESC ;
+
+RETURN :EMP_PO_COMBINED_CNT;
 END;
