@@ -1,21 +1,20 @@
 /*eslint no-console: 0, no-unused-vars: 0, dot-notation: 0*/
+/*eslint-env node, es6 */
 "use strict";
 
 var conn = $.hdb.getConnection();
 var query = "SELECT FROM PurchaseOrder.Item { " +
-	        " PURCHASEORDERID as \"PurchaseOrderItemId\", " +
-            " PURCHASEORDERITEM as \"ItemPos\", " +
+	        " POHeader.PURCHASEORDERID as \"PurchaseOrderItemId\", " +
             " PRODUCT as \"ProductID\", " +
             " GROSSAMOUNT as \"Amount\" " +
             " } ";
 var rs = conn.executeQuery(query);
 
 var body = "";
-
-for(var i = 0; i < rs.length; i++){
-   if(rs[i]["Amount"] >= 500){
-	body += rs[i]["PurchaseOrderItemId"] + "\t" + rs[i]["ItemPos"] + "\t" + 
-			rs[i]["ProductID"] + "\t" + rs[i]["Amount"] + "\n";
+for(var item of rs){
+   if(item.Amount >= 500){
+	body += item.PurchaseOrderItemId + "\t" + 
+			item.ProductID + "\t" + item.Amount + "\n";
    }
 }
 
