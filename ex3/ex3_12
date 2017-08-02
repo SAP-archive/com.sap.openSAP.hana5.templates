@@ -2,10 +2,10 @@
    type: nodejs
    path: user_js
    provides: 
-     - name: user-js-service
+     - name: user_js_api
        properties:
          url: "${default-url}"
    requires:
-      - name: openSAPHANA5_<group number>-uaa
+      - name: openSAPHANA6_<group number>-uaa
       - name: user-container
       - name: user_db
