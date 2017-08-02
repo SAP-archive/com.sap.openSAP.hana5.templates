@@ -2,7 +2,7 @@
     type: nodejs
     path: core_js
     provides:
-      - name: core-js-api
+      - name: core_js_api
         properties:
           url: '${default-url}'
     requires:
