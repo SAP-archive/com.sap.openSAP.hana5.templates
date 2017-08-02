@@ -2,10 +2,10 @@
     type: nodejs
     path: core_js
     provides:
-      - name: core-js-service
+      - name: core-js-api
         properties:
           url: '${default-url}'
     requires:
-      - name: openSAPHANA5_<group number>-uaa
+      - name: openSAPHANA6_<group number>-uaa
       - name: hdi-container
       - name: core_db
