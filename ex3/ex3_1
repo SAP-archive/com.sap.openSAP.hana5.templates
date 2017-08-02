@@ -4,7 +4,7 @@ modules:
     path: web
     requires:
       - name: openSAPHANA6_<group number>-uaa
-      - name: core-js-api
+      - name: core_js_api
         group: destinations
         properties:
           name: core-backend
