@@ -1,12 +1,11 @@
-	var async = require("async");
 	//Simple Database Select - Async Waterfall
-	app.get("/example2", function(req, res) {
+	app.get("/example2", (req, res) => {
 		var client = req.db;
 		async.waterfall([
 
 			function prepare(callback) {
 				client.prepare("select SESSION_USER from \"DUMMY\" ",
-					function(err, statement) {
+					(err, statement) => {
 						callback(null, err, statement);
 					});
 			},
@@ -18,7 +17,7 @@
 			},
 			function response(err, results, callback) {
 				if (err) {
-					res.type("text/plain").status(500).send("ERROR: " + err.toString());
+					res.type("text/plain").status(500).send(`ERROR: ${err.toString()}`);
 					return;
 				} else {
 					var result = JSON.stringify({
@@ -29,4 +28,4 @@
 				callback();
 			}
 		]);
-	}); 
+	});
