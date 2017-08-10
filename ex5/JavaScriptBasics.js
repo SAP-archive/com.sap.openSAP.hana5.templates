@@ -14,8 +14,7 @@ module.exports = function() {
 			<a href="${req.baseUrl}/json">/json</a> - JSON JavaScript Object Notation processing</br>
 			<a href="${req.baseUrl}/objects">/objects</a> - JavaScript Objects</br>
 			<a href="${req.baseUrl}/strings">/strings</a> - String processing</br>
-			<a href="${req.baseUrl}/promises">/promises</a> - Promises</br>` +
-			require(global.__base + "utils/exampleTOC").fill();
+			<a href="${req.baseUrl}/promises">/promises</a> - Promises</br>`;
 		res.type("text/html").status(200).send(output);
 	});
 
