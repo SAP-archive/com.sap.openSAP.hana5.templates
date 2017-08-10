@@ -139,11 +139,13 @@ module.exports = function() {
 
 		body += "<b>Object Literals</b></p>";
 		//Object Literal	
-		var colors = {
-			red: "#FF0000",
-			green: "#00FF00",
-			blue: "#0000FF",
-			favoriteColor: () => {
+	    class color {
+			constructor()  {
+			this.red =  "#FF0000";
+			this.green =  "#00FF00";
+			this.blue = "#0000FF";
+			}
+			favoriteColor() {
 				var now = new Date();
 				if (now.getDay() === 1) { //If Monday
 					return this.blue;
@@ -151,8 +153,9 @@ module.exports = function() {
 					return this.red;
 				}
 			}
-		};
-
+		}
+		
+		let colors = new color();
 		body += "<span style=\"color:" + colors.red + "\">Red</span></p>";
 		body += "<span style=\"color:" + colors["blue"] + "\">Blue</span></p>";
 		body += "<span style=\"color:" + colors.green + "\">Green</span></p>";
