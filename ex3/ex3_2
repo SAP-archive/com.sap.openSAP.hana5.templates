@@ -7,5 +7,5 @@
           url: '${default-url}'
     requires:
       - name: openSAPHANA6_<group number>-uaa
-      - name: hdi-container
+      - name: hdi_core_db
       - name: core_db
