@@ -1,11 +1,11 @@
- - name: user_js
+ - name: user_xsjs
    type: nodejs
-   path: user_js
+   path: user_xsjs
    provides: 
-     - name: user_js_api
+     - name: user_xsjs_api
        properties:
          url: "${default-url}"
    requires:
       - name: openSAPHANA6_<group number>-uaa
-      - name: user-container
+      - name: hdi_user_db
       - name: user_db
