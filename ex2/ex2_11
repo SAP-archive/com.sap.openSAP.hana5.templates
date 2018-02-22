@@ -1,7 +1,6 @@
-  - name: CrossSchemaService
-    type: org.cloudfoundry.existing-service
-    description: Cross Schema User Provided Service for access to SFLIGHT schema
+  - name: CROSS_SCHEMA_SFLIGHT_00
     parameters:
-      service-name: CROSS_SCHEMA_SFLIGHT_<Group Number>
+      service-name: CROSS_SCHEMA_SFLIGHT_00
+    type: org.cloudfoundry.existing-service
     properties:
       sflight-service-name: '${service-name}'
