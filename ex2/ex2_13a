@@ -1,5 +1,5 @@
 {
-  "central-db-service": {
+  "ServiceName_2": {
     "object_owner" : {
       "container_roles":["consumption", "admin#"]
     },
