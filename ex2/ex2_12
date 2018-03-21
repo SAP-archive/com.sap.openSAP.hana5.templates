@@ -1,5 +1,5 @@
 {
-  "hdi-sflight-service": {
+  "ServiceName_1": {
     "object_owner": {
       "roles": [
         "SFLIGHT_CONTAINER_ACCESS"
