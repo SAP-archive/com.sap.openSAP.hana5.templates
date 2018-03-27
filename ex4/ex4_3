@@ -19,8 +19,15 @@
 		"localDir": "resources",
 		"authenticationType": "xsuaa",
 		"replace": {
-			"pathSuffixes": ["index.html", "odataTest.html"],
-			"vars": ["ui5liburl"]
+			"pathSuffixes": [
+				"index.html",
+				"odataTest.html"
+			],
+			"services": {
+				"sapui5_sb": {
+					"tag": "ui5"
+				}
+			}
 		}
 	}
 	]
