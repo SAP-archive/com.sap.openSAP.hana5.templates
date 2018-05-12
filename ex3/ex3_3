@@ -3,12 +3,12 @@
 	"authenticationMethod": "route",
 	"routes": [{
 		"source": "(.*)(.xsjs)",
-		"destination": "core-xsjs-backend",
+		"destination": "core-backend",
 		"csrfProtection": false,
 		"authenticationType": "xsuaa"
 	}, {
 		"source": "(.*)(.xsodata)",
-		"destination": "core-xsjs-backend",
+		"destination": "core-backend",
 		"authenticationType": "xsuaa"
 	}]
 }
