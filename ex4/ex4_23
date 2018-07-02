@@ -12,3 +12,4 @@
 			bpModel.attachMetadataLoaded(bpModel, function() {
 				fnLoadMetadata();
 			});
+			fnLoadMetadata();
