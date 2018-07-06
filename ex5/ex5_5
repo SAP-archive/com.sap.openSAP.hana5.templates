@@ -1,24 +1,25 @@
-	//Simple Database Select - In-line Callbacks
+	//Simple Database Select Via Client Wrapper/Middelware - In-line Callbacks
 	app.get("/example1", (req, res) => {
-		var client = req.db;
+		let client = req.db;
 		client.prepare(
-			"select SESSION_USER from \"DUMMY\" ",
+			`SELECT SESSION_USER, CURRENT_SCHEMA 
+				             FROM "DUMMY"`,
 			(err, statement) => {
 				if (err) {
-					res.type("text/plain").status(500).send(`ERROR: ${err.toString()}`);
-					return;
+					return res.type("text/plain").status(500).send("ERROR: " + err.toString());
 				}
 				statement.exec([],
 					(err, results) => {
 						if (err) {
-							res.type("text/plain").status(500).send(`ERROR: ${err.toString()}`);
-							return;
+							return res.type("text/plain").status(500).send("ERROR: " + err.toString());
 						} else {
 							var result = JSON.stringify({
 								Objects: results
 							});
-							res.type("application/json").status(200).send(result);
+							return res.type("application/json").status(200).send(result);
 						}
 					});
+				return null;
 			});
-	}); 
+	});
+
