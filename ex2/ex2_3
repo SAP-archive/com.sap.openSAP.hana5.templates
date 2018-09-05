@@ -1,10 +1,10 @@
-{
+{ 
 	"format_version": 1,
 	"imports": [{
-		"target_table": "PurchaseOrder.Header",
+		"target_table": "OPENSAP_PURCHASEORDER_HEADERS",
 		"source_data": {
 			"data_type": "CSV",
-			"file_name": "header.csv",
+			"file_name": "headerCDS.csv",
 			"has_header": false,
 			"dialect": "HANA",
 			"type_config": {
@@ -42,10 +42,10 @@
 		}
 	},
 	{
-		"target_table": "PurchaseOrder.Item",
+		"target_table": "OPENSAP_PURCHASEORDER_ITEMS",
 		"source_data": {
 			"data_type": "CSV",
-			"file_name": "item.csv",
+			"file_name": "itemCDS.csv",
 			"has_header": false,
 			"dialect": "HANA",
 			"type_config": {
@@ -54,7 +54,7 @@
 		},
 		"import_settings": {
         	"include_filter" : [ ],			
-			"import_columns": ["POHeader.PURCHASEORDERID",
+			"import_columns": ["POHEADER_PURCHASEORDERID",
 			"PRODUCT",
 			"NOTEID",
 			"CURRENCY",
@@ -65,7 +65,7 @@
 			"QUANTITYUNIT" ]
 		},
 		"column_mappings": {
-			"POHeader.PURCHASEORDERID": 1,
+			"POHEADER_PURCHASEORDERID": 1,
 			"PRODUCT": 3,
 			"NOTEID": 4,
 			"CURRENCY": 5,
