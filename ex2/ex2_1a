@@ -1,9 +1,4 @@
-// namespace sample;
-using { 
-  opensap.PurchaseOrder.Headers, 
-  opensap.PurchaseOrder.Items,
-  opensap.PurchaseOrder.ItemView
-} from '../db/PurchaseOrder';
+using opensap.PurchaseOrder as PO from '../db/PurchaseOrder';
 
 entity Base {
   key ID : Integer;
