@@ -1,4 +1,4 @@
-using opensap.PurchaseOrder as PO from '../db/PurchaseOrder';
+using from '../db/PurchaseOrder';
 
 entity Base {
   key ID : Integer;
